@@ -224,7 +224,7 @@ btn_login.addEventListener("click", () => {
 
 //////////////////////////////////////////////////////////////////////////////////
 //ejercicio 5.2
-/* const userDB = "admin";
+const userDB = "admin";
 const passwordDB = "123";
 
 const message = document.getElementById("message"); //<h1></h1>
@@ -232,28 +232,70 @@ const input_name = document.getElementById("name"); //<input></input>
 const input_password = document.getElementById("password"); //<input></input>
 const btn_login = document.getElementById("btn-login"); //<button></button>
 
+const error_name = document.getElementById("error_name");
+
 const authenticationUser = (nameUser) => {
   //validaciones para el usuario
-  //El nombre de usuario que no lleve caracteres especiales
-  //El nombre de usuario que no lleve numeros
-  //El nombre de usuario debe tener al menos 3 caracteres
-  //El nombre de usuario debe tener maximo 10 caracteres
-  //usar for
-  //validaciones para la contraseña
-  //Que tenga al menos 1 carcater especial
-  //Que tenga al menos 1 numero
-  //El nombre de usuario debe tener al menos 3 caracteres
-  //El nombre de usuario debe tener maximo 10 caracteres
+  //El nombre de usuario que no lleve caracteres especiales(%$#) ✅
+  //El nombre de usuario que no lleve numeros ✅
+  //El nombre de usuario debe tener al menos 3 caracteres✅
+  //El nombre de usuario debe tener maximo 10 caracteres✅
+  error_name.innerText = "";
+  let error = true;
+  for (let i = 0; i < nameUser.length; i++) {
+    if (nameUser[i] == "%" || nameUser[i] == "$" || nameUser[i] == "#") {
+      error_name.innerText = "Error: no se permiten caracteres especiales(%$#)";
+      error = false;
+    } else if (
+      nameUser[i] == "0" ||
+      nameUser[i] == "1" ||
+      nameUser[i] == "2" ||
+      nameUser[i] == "3" ||
+      nameUser[i] == "4" ||
+      nameUser[i] == "5" ||
+      nameUser[i] == "6" ||
+      nameUser[i] == "7" ||
+      nameUser[i] == "8" ||
+      nameUser[i] == "9"
+    ) {
+      error_name.innerText = "Error: no se permiten numeros";
+      error = false;
+    } else if (nameUser.length < 3) {
+      error_name.innerText =
+        "Error: el nombre de usuario debe tener al menos 3 caracteres";
+      error = false;
+    } else if (nameUser.length > 10) {
+      error_name.innerText =
+        "Error: el nombre de usuario debe tener maximo 10 caracteres";
+      error = false;
+    }
+  }
+
+  return error;
+};
+//validaciones para la contraseña
+//Que tenga al menos 1 caracter especial
+//Que tenga al menos 1 numero
+//El nombre de usuario debe tener al menos 3 caracteres
+//El nombre de usuario debe tener maximo 10 caracteres
+
+const authentication = (validateUser) => {
+  if (validateUser == true) {
+    message.innerText = "Welcome";
+  } else {
+    message.innerText = "Error";
+  }
 };
 
-input_name.addEventListener("input", () => {
+btn_login.addEventListener("click", () => {
   const nameUser = input_name.value;
-  authenticationUser(nameUser);
+  const validateUser = authenticationUser(nameUser);
+  authentication(validateUser);
   // const passwordUser = input_password.value;
 
   // const login = authentication(nameUser, passwordUser);
   // message.innerText = login;
-}); */
+});
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
